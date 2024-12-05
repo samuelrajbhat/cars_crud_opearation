@@ -24,4 +24,12 @@ class CarsViewset(APIView):
             return Response({"status": "success", "data": serializer.data}, status= status.HTTP_200_OK)
         else:
             return Response({"status" : "error", "data": serializer.errors}, status= status.HTTP_400_BAD_REQUEST)
- 
+
+    def patch(self, request, id=None):
+        item = models.Cars.objects.get(id= id)
+        serializers = serializers.CarsSeralizers(item, data=request.data, partial= True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response({"status": "success", "data": serializers.data}, status= status.HTTP_200_OK)
+        else:
+            return Response({"status": "error", "data": serializers.error}, status= status.HTTP_400_BAD_REQUEST)

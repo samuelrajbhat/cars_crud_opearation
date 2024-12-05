@@ -8,4 +8,4 @@ class Cars(models.Model):
     car_version = models.CharField(max_length=3)
     car_model = models.CharField(max_length= 15)
     car_company = models.CharField(max_length= 100)
-    car_manufactured_year = models.DateField(null= False)
+    car_manufactured_year = models.DateField(null= True)
